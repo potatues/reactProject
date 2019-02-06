@@ -1,0 +1,10 @@
+.cityLocation {
+    text-align: left;
+}
+.cityLocation{
+    font-family: 'Roboto', sans-serif;
+    color: rgba(0,0,0,0.4);
+    line-height: 0;
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
