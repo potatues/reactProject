@@ -6,7 +6,9 @@ const icons = {
     cloudy : 'day-cloudy-gusts',
     rainy : 'day-rain-mix',
     snowy : 'snow',
-    windy : 'windy'
+    windy : 'windy',
+    thunder : 'day-thunderstore',
+    drizzle : 'day-showers',
 };
  
 const getWeatherIcon = (weatherState)=>{

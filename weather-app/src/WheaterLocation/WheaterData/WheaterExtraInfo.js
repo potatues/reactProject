@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 const WheaterExtraInfo = ({humidity, wind})=> {
-    console.log({wind});
     return (
     <div className="weatherExtraInfo">
         <span className="extraInfoText1">{`Humedad : ${humidity} %`}</span>

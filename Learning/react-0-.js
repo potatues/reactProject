@@ -317,11 +317,228 @@ npm start
              *  KEY : 0cb9ddb1ffcf4270090d9a9f2cbb3738
              *  url para acceder a datos : http://api.openweathermap.org/data/2.5/weather?q=[location]&appid=[KEY]
              * 
+             *  Traer datos del servidor con la instruccion :
+             *      Fetch : trae los datos del server y lo podremos utilizar
+             *      dentro del navegador para las cosas que se necesiten
+             *      es una instruccion nativa(no se necesitan libreria),
+             *      relativa solo para navegadores modernos,
+             *      también para navegadores viejos se puede utilizar
+             *      Axios
              * 
              * 
+             *      Creamos algunas constantes para mejorar la
+             *      reuzabilidad
+             *      Para consumir la api, necesitamos
+             *      //URL BASE                                       LOCACIÓN          KEYUSUARIO                  
+             *      http://api.openweathermap.org/data/2.5/weather?q=[location]&appid=[KEY]
              * 
-             * 
-             * 
-             * 
-             * 
+       
              */
+                  const name_city = 'Bogota, CO'
+                  const key_weather = '0cb9ddb1ffcf4270090d9a9f2cbb3738';
+                  const url_api_weather = ' http://api.openweathermap.org/data/2.5/weather';
+                   //Uniendo todo
+                      //q hace referencia a query
+                  const api_weather = `${url_api_weather}?q=${name_city}$appid=${key_weather}`;
+                    //PARA QUE NOS PASE LA TEMPERATURA EN GRADOS C°, SE AGREGA
+                    //AL FINAL DE LIMK LA PROPIEDAD &units=imperial
+                  //UTILIZAMOS FETCH para consumir
+                    //Nos devolverá un JSON con los datos del API
+                    fetch(api_weather);
+                      //Para leer los datos utilizaremos las promises
+                      //o promesas
+
+                      /**
+                       * Una promesa es un objeto que es utilizado
+                       * para peticiones asincronas y representa
+                       * un valor que puede estar disponible en el
+                       * momento (ahora), en un futuro o nunca, debido
+                       * algun tipo de fallo
+                       * 
+                       * 
+                       * Puede encontrarse en algun estado:
+                       *  pending (pendiente) : Ni cumplida, ni rechazada
+                       *  fulfill (cumplida) : Esta acción se completa satisfactoriamente
+                       *  Rejected (fallida) : La operación fallo
+                       *    
+                       */
+
+                        //Cómo definir una promise
+                        //Se crea una variable y se crea un
+                        //nuevo objeto de tipo promesa
+                        //con dos parametrs, resolve y reject, cuando haya o no ido bien
+                        let promesa = new Promise((resolve, reject) =>{
+                            //Cuerpo funcion
+                              //Ejemplo de un peticion que tardara dos segundos en llegar
+                              //y llamar a resolve con el msj exito total
+                            setTimeout(() =>{
+                              //Opcion con then  resolve("Exito total!");
+                              //Opcion con catch reject("error tota");
+                              resolve("Exito total")
+                             }, 2000);
+                        }); 
+
+                        console.log("Ahora comienza");
+                        //Ejecutar promesa con la la palabra reservada then
+                       // si se ejcuta correctamente, en caso de que se ulticé resolve
+                        ///mensaje hace referencia a lo que devuelve resolve,
+                        //si se utilizara reject no pasaria por .then
+                          promesa.then((mensaje) =>{
+                                console.log(mensaje);
+                            }).catch((error)=>{
+                               //Para atrapar un reject se utiliza el catch
+                                 console.log(error); 
+                             });
+
+                          /***
+                           * 
+                           * fetch(url) devuelve una promise pero aún no devuelve el resultado que
+                           * se espera
+                           * 
+                           * como fetch devuelve una promise hay que manejarlo
+                           * con then y catch; debugger nos permitirá
+                           * poner un breakpoint;            
+                           * Con esto nos devolvera los headers, más
+                           * no nos dará datos referentes al clima,
+                           * para acceder a ellos daremos 
+                           * un return resolve.json()
+                           * lo que nos devolverá una nueva promise,
+                           * para ellos concatamos otro then para obtener
+                           * el resultado de la promise
+                
+                           */
+                           fetch(url).then((resolve)=>{
+                                console.log(resolve);
+                                
+                                 return resolve.json()
+                             }).then((result)=>{
+                                //Recibimos un JSON con todos los datos del clima
+                                console.log(result);
+                                  debugger;
+                           });
+                           //TRANFORMACIÓN DE LOS DATOS QUE RECIBIMOS
+                            /***
+                             * 
+                             * Crear función
+                             * 
+                             * getWeatherState = weatherData => {
+                             *  return SUN;
+                             * }
+                             * 
+                             * getData =  weather_data =>{
+                             *  const { humidity, temp, } = weather_data.main;
+                             *  const {speed} = wheaher_data.wind;
+                             *  const {weatherState} =  this.getWeatherState(weather_data);
+                             *   const data = {
+                             *    humidity,
+                             *    temperature: temp,
+                             *    weatherState,
+                             *    wind: `${speed}m/s`
+                             *    }
+                             * return data;
+                             * }
+                             * 
+                             * 
+                             */
+
+
+
+                                //PATRÓN DE DISEÑO SOLID
+
+                                /**
+                                 * 
+                                 * SOLID
+                                 * 
+                                 * 1. S = Single responsability => Cada una de las clases
+                                 * tiene que tener una unica responsabilidad para poder tener
+                                 * el meno rnivel de acomplamiento, para que después pueda
+                                 * ser transformada.
+                                 * 
+                                 * Separar todas los métodos anexos a JSX, para hacer
+                                 * un mejor acoplamiento.
+                                 * 
+                                 * 
+                                 */
+
+
+                                 //EVENTOS DE CICLO DE VITA DE COMPONENTE REACT
+
+                                 /***
+                                  * 
+                                  * Ciclo de vida inicializacion:
+                                  * 
+                                  *     - Constructor 
+                                  *     -unsafe componentWillMount()
+                                  *     - render()
+                                  *     - componentDidMount()
+                                  * 
+                                  * Ciclo de vida actualización :
+                                  * 
+                                  *     -unsafe componentWillUpdate()
+                                  *     -render
+                                  *     -componentDidUpdate()
+                                  * 
+                                  * 
+                                  * 
+                                  *   shortcut cdm = 
+                                  *   componentDidMount(){
+                                  *     //Ejecutar funciona o generar información
+                                  *     después que se renderize la pagina
+                                  *   }
+                                  * 
+                                  *   shortcut cdup = 
+                                  *   componentDidUpdate(prevProps, prevState){
+                                  *     //Ejecutar funciona o generar información
+                                  *     después que se ejecute una actualización
+                                  *   }
+                                  * 
+                                  *   shortcut cwm= no usar
+                                  *   componentWillMount(){
+                                  *   
+                                  *   }
+                                  *   
+                                  *   shortcut cwup = no usar
+                                  *   componentWillUpdate(prevProps, prevState){
+                                  *     
+                                  *   }
+                                  */
+
+
+                                  /***
+                                   * 
+                                   * MATERIAL UI.com (Librería gráfica)
+                                   * Para funcionar correctamente
+                                   * hay que importar la fuente 
+                                   * <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+                                   * 
+                                   * npm i @material-ui/core
+                                   * 
+                                   * 
+                                   * ESLint extension: Es una herramienta para checkear el codigo estatico
+                                   * código correcto en forma, 
+                                   * 
+                                   * 
+                                   * Cuando se generan varios componentes
+                                   * con la msima estructura, aparecerá un 
+                                   * error en consola, especificando que 
+                                   * los componentes no tienes keys
+                                   * prestablecidas.
+                                   * 
+                                   * Para solicionar el el loop que crea los
+                                   * componentes , y especificamente en el componente
+                                   * se pone l propiedad key, recomendable dejar a, sí this.state = {
+                                     un nombre único
+                                   };
+                                   * 
+                                   * cities.map((a) => <Component key={a} atribu= {a} />)
+                                   */
+                                      //COMUNICACIÓN ENTRE COMPONENTES
+                                      /****
+                                       * 
+                                       * Burbujeo de acciones : Renderiza segun la accion realizada,
+                                       *  a otro lado comprendiendo el estado actual donde se ha ejecutado
+                                       * la acción
+                                       * 
+                                       * 
+                                       * 
+                                       */

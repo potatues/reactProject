@@ -8,7 +8,6 @@ return (
          <h1 className="cityLocation">{city}</h1>
     </div>
         );
-
 }
 
 Location.propTypes = {

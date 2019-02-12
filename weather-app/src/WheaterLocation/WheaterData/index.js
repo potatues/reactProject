@@ -2,13 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import WheaterTemperature from './WheaterTemperature';
 import WheaterExtraInfo from './WheaterExtraInfo';
-import {
-    CLOUDY,
-    SUNNY, 
-    RAINY , 
-    SNOWY , 
-    WINDY,
-} from '../../constans/weather';
 import './styles.css';
 
 
