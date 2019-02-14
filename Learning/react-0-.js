@@ -542,3 +542,72 @@ npm start
                                        * 
                                        * 
                                        */
+
+
+                                  //FLEXBOX CON REACT
+
+                                  /***
+                                   * 
+                                   * Se pueden utilizar diferentes librerias para crear el flexbox,
+                                   * o por el contrario utilizar el flebox de css
+                                   * 
+                                   * npm i react-flexbox-grid
+                                   * 
+                                   * import {Grid, Row, Col} from 'react-flexbox-grid';
+                                   * 
+                                   * Utiliza la mecanica basica de Bootstrap divide en 12 cols
+                                   * 
+                                   *  <Grid fluid> //Fluid = para que tenga padding en los laterales
+                                   *    <Row>
+                                   *      <Col xs={12} sm={6} md={4} lg={2} >
+                                   * 
+                                   *      </Col>
+                                   *      <Col xs={12} sm={6} md={4} lg={2} >
+                                   * 
+                                   *      </Col>
+                                   *    </Row>
+                                   *  </Grid>
+                                   * 
+                                   *   <Grid fluid> 
+                                   *    <Row>
+                                   *      <Col xs> Dejar que se ajusten automaticamente, siempre ocuparan una sola linea
+                                   *      </Col>
+                                   *      <Col xs >
+                                   *      </Col>
+                                   *    </Row>
+                                   *  </Grid>
+                                   * 
+                                   *   <Grid fluid> 
+                                   *    <Row>
+                                          * Se utiliza para comenzar a dibujar despues de las
+                                          *  columnas que especificamos, en este caso 3.
+                                   *      <Col xsOffset={3}> xs </Col>
+                                   *      <Col xs >
+                                   *      </Col>
+                                   *    </Row>
+                                   *  </Grid>
+                                   * 
+                                   *    <Grid fluid> 
+                                   *    <Row start='xs'>
+                                         
+                                   *    Ya que no completan las 12 columnas
+                                        podemos utilizar un alimiento, para donde
+                                        queramos que se alineen.
+                                        Con : start, center o end.
+
+                                        También podrías hace runa distribución de espacio a pesar
+                                        de no tener las 12 cols, con : around='xs', 
+
+                                        Para no dejar espacios equivalente a los lados con : between='xs'
+
+                                   *      <Col xs={2}></Col>
+                                   *      <Col xs={2} >
+                                   *      </Col>
+                                   *    </Row>
+                                   *  </Grid>
+                                   * 
+                                   * 
+                                   * 
+                                   * 
+                                   * 
+                                   */
